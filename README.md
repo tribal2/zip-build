@@ -1,2 +1,86 @@
-# zip-build
-Node package to zip your build directory and name it according to your package.json name and version.
+<h1 align="center">Welcome to zip-build 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/zip-build" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/zip-build.svg">
+  </a>
+  <a href="https://github.com/swordf1zh/zip-build#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/swordf1zh/zip-build/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/swordf1zh/zip-build/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/swordf1zh/zip-build" />
+  </a>
+  <a href="https://twitter.com/r\_tribaldos" target="_blank">
+    <img alt="Twitter: r\_tribaldos" src="https://img.shields.io/twitter/follow/r_tribaldos.svg?style=social" />
+  </a>
+</p>
+
+> Node package to zip your build directory and name it according to your package.json name and version.
+
+## Install
+
+```sh
+$ npm install --save-dev zip-build
+```
+
+## Usage
+
+```sh
+$ zip-build --help
+
+  #  zip-build <build-dir> <zip-dir> [options]
+  #
+  #  Positionals:
+  #    build-dir  Directory of your build output         [default: "build"]
+  #    zip-dir    Directory for your zipped backup        [default: "dist"]
+  #
+  #  Options:
+  #        --version  Show version number                         [boolean]
+  #    -h, --help     Show help                                   [boolean]
+  #
+  #  Examples:
+  #  (1) Using defaults:
+  #  $ index.js                   Zip 'build' directory and put archive
+  #                               under 'dist' directory.
+  #
+  #  (2) Using your own directory names:
+  #  $ index.js out backup        Zip 'out' directory and put archive under
+  #                               'backup' directory.
+```
+
+Include it as part of your npm build workflow:
+```javascript
+//package.json
+  {
+    "name": "your-project",
+    // ...
+    "scripts": {
+      // ...
+      "build": "build && zip-build",
+      // ...
+    },
+    // ...
+  }
+```
+
+## Author
+
+👤 **Ricardo Tribaldos (https://barustudio.com)**
+
+* Github: [@swordf1zh](https://github.com/swordf1zh)
+* Twitter: [@r_tribaldos](https://twitter.com/r_tribaldos)
+* LinkedIn: [@rtribaldos](https://linkedin.com/in/rtribaldos)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2020 [Ricardo Tribaldos (https://barustudio.com)](https://github.com/swordf1zh).<br />
+This project is [MIT](https://github.com/swordf1zh/zip-build/blob/master/LICENSE) licensed.
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

@@ -23,8 +23,8 @@ yargs(hideBin(process.argv))
           describe: 'Directory for your zipped backup',
           default: 'dist'
         })
-        .example('$0', 'Zip build directory and put archive under dist directory.')
-        .example('$0 out backup', 'Zip out directory and put archive under backup directory.')
+        .example('$0', "Zip 'build' directory and put archive under dist directory.")
+        .example('$0 out backup', "Zip 'out' directory and put archive under backup directory.")
     },
     (argv) => {
       const { buildDir, zipDir } = argv;
