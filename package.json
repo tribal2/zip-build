@@ -22,6 +22,7 @@
   ],
   "dependencies": {
     "inquirer": "^7.3.3",
+    "yargs": "^16.1.1",
     "zip-folder": "^1.0.0"
   }
 }
