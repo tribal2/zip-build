@@ -69,7 +69,8 @@ async function setBackupName(filename) {
 
 async function init() {
   if (!fs.existsSync(BUILDPATH)) {
-    throw new Error(`There is no directory with the name '${OPTS.builddir}' in your project.`);
+    console.log(`There is no directory with the name '${OPTS.builddir}' in your project.`);
+    process.exit(1);
   }
 
   if (!fs.existsSync(OUTPATH)) {
@@ -85,6 +86,7 @@ async function init() {
       }
     } else {
       console.log('Bye!');
+      process.exit(1);
     }
   }
 
@@ -98,6 +100,7 @@ async function init() {
       console.log(`${OPTS.distdir}/${OUTFILE} written.`);
     }
   });
+
 }
 
 init().catch(err => console.log(err));
