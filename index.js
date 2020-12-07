@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const fs = require('fs');
+const zipFolderPromise = require('zip-folder-promise');
 const inquirer = require('inquirer');
 const yargs = require('yargs/yargs');
-const zipFolder = require('zip-folder');
 
 const CWD = process.cwd();
 const PACKAGE = require(`${CWD}/package.json`);
@@ -121,12 +121,7 @@ async function init(srcdir = 'build', dstdir = 'dist') {
   const OUTFILE = await setBackupName(dstdir, `${PACKAGE.name}_${PACKAGE.version}.zip`);
   const OUTURI = `${OUTPATH}/${OUTFILE}`;
 
-  zipFolder(BUILDPATH, OUTURI, (err) => {
-    if (err) {
-      console.log('ERROR!', err);
-    } else {
-      console.log(`${dstdir}/${OUTFILE} written.`);
-    }
-  });
+  const resMsg = await zipFolderPromise(BUILDPATH, OUTURI);
 
+  console.log(`${resMsg} to ${dstdir}/${OUTFILE}`);
 }

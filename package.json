@@ -1,28 +1,33 @@
 {
   "name": "zip-build",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Node package to zip your build directory and name it according to your package.json name and version.",
+  "homepage": "https://github.com/swordf1zh/zip-build#readme",
   "author": "Ricardo Tribaldos (https://barustudio.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/swordf1zh/zip-build"
   },
-  "main": "index.js",
-  "bin": "./index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "zip",
     "build",
     "npm",
     "zip-build",
-    "zip-dist"
+    "zip-dist",
+    "zip-folder"
   ],
+  "bugs": {
+    "url": "https://github.com/swordf1zh/zip-build/issues"
+  },
+  "main": "index.js",
+  "bin": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "inquirer": "^7.3.3",
     "yargs": "^16.1.1",
-    "zip-folder": "^1.0.0"
+    "zip-folder-promise": "^1.0.0"
   }
 }
