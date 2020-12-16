@@ -41,6 +41,8 @@ $ zip-build --help
   #    -h, --help     Show help                                   [boolean]
   #    -f, --format   Format of output file
   #                       [string] [choices: "zip", "tar"] [default: "zip"]
+  #    -n, --name     Ask for output archive filename
+  #                                              [boolean] [default: false]
   #
   #  Examples:
   #  (1) Using defaults:
