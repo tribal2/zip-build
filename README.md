@@ -39,15 +39,22 @@ $ zip-build --help
   #  Options:
   #        --version  Show version number                         [boolean]
   #    -h, --help     Show help                                   [boolean]
+  #    -f, --format   Format of output file
+  #                       [string] [choices: "zip", "tar"] [default: "zip"]
   #
   #  Examples:
   #  (1) Using defaults:
-  #  $ index.js                   Zip 'build' directory and put archive
-  #                               under 'dist' directory.
+  #  $ index.js                      Zip 'build' directory and put archive
+  #                                  under 'dist' directory.
   #
   #  (2) Using your own directory names:
-  #  $ index.js out backup        Zip 'out' directory and put archive under
-  #                               'backup' directory.
+  #  $ index.js out backup           Zip 'out' directory and put archive
+  #                                  under 'backup' directory.
+  #
+  #  (3) Using your own directory names and TAR format:
+  #  $ index.js out backup -f tar    Archive 'out' directory and put
+  #                                  archive under 'backup' directory
+  #                                  compressed with TAR.
 ```
 
 Include it as part of your npm build workflow:
