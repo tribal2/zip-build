@@ -8,6 +8,10 @@ const CWD = process.cwd();
 const PACKAGE = require(`${CWD}/package.json`);
 
 const { hideBin } = require('yargs/helpers')
+
+let _format;
+let _askFilename;
+
 yargs(hideBin(process.argv))
   .command(
     '$0 [build-dir] [zip-dir] [options]',
@@ -23,11 +27,30 @@ yargs(hideBin(process.argv))
           describe: 'Directory for your zipped backup',
           default: 'dist'
         })
+        .option('f', {
+          alias: 'format',
+          type: 'string',
+          description: 'Format of output file',
+          choices: [
+            'zip',
+            'tar',
+          ],
+          default: 'zip',
+        })
+        .option('n', {
+          alias: 'name',
+          type: 'boolean',
+          description: 'Ask for output archive filename',
+          default: false,
+        })
         .example('$0', "Zip 'build' directory and put archive under dist directory.")
         .example('$0 out backup', "Zip 'out' directory and put archive under backup directory.")
     },
     (argv) => {
-      const { buildDir, zipDir } = argv;
+      const { buildDir, zipDir, format, name } = argv;
+      _format = format;
+      _askFilename = name;
+
       init(buildDir, zipDir)
         .catch(err => console.log(err));
     }
@@ -62,29 +85,29 @@ async function setBackupName(dstdir, filename) {
     message: MSG,
     choices: [
       'Overwrite existing file',
-      'Rename zip file appending the current timestamp',
-      'Rename zip file with another name',
+      'Rename output file appending the current timestamp',
+      'Rename output file with another name',
       'Exit'
     ],
   }]);
 
   switch (ANS.qname) {
-    case 'Overwrite existing file':
+    case choices[0]:
       return filename;
 
-    case 'Rename zip file appending the current timestamp':
+    case choices[1]:
       return await setBackupName(
         dstdir,
-        `${PACKAGE.name}_${PACKAGE.version}_${Date.now()}.zip`
+        `${PACKAGE.name}_${PACKAGE.version}_${Date.now()}.${_format}`
       );
 
-    case 'Rename zip file with another name':
+    case choices[2]:
       const ANS_REN = await inquirer.prompt([{
         type: 'input',
         name: 'filename',
-        message: 'New name for your zip file:',
+        message: 'New name for your file:',
       }]);
-      return await setBackupName(dstdir, `${ANS_REN.filename}.zip`);
+      return await setBackupName(dstdir, `${ANS_REN.filename}.${_format}`);
 
     default:
       console.log('Bye!');
@@ -118,10 +141,21 @@ async function init(srcdir = 'build', dstdir = 'dist') {
     }
   }
 
-  const OUTFILE = await setBackupName(dstdir, `${PACKAGE.name}_${PACKAGE.version}.zip`);
+  let outfileName = `${PACKAGE.name}_${PACKAGE.version}.${_format}`;
+  if (_askFilename) {
+    const ANS_NAME = await inquirer.prompt([{
+      type: 'input',
+      name: 'filename',
+      message: 'Set output filename (including extension):',
+    }]);
+
+    if (ANS_NAME.filename) outfileName = ANS_NAME.filename;
+  }
+
+  const OUTFILE = await setBackupName(dstdir, outfileName);
   const OUTURI = `${OUTPATH}/${OUTFILE}`;
 
-  const resMsg = await zipFolderPromise(BUILDPATH, OUTURI);
+  const resMsg = await zipFolderPromise(BUILDPATH, OUTURI, _format);
 
   console.log(`${resMsg} to ${dstdir}/${OUTFILE}`);
 }
