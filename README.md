@@ -43,6 +43,10 @@ $ zip-build --help
   #                       [string] [choices: "zip", "tar"] [default: "zip"]
   #    -n, --name     Ask for output archive filename
   #                                              [boolean] [default: false]
+  #    -t, --template Template for output archive filename using variables
+  #                   from your package.json file (eg: name, version,
+  #                   license, description, author, etc.)
+  #                              [string] [default: %NAME%_%VERSION%.%EXT%]
   #
   #  Examples:
   #  (1) Using defaults:
