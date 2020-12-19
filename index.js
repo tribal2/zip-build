@@ -77,18 +77,20 @@ async function setBackupName(dstdir, filename) {
 
   if (! fs.existsSync(URI)) return filename;
 
+  const choices = [
+    'Overwrite existing file',
+    'Rename output file appending the current timestamp',
+    'Rename output file with another name',
+    'Exit'
+  ];
+
   const MSG = `The file '${filename}' already exists in directory `
     + `'${dstdir}'.. What do you want to do?`
   const ANS = await inquirer.prompt([{
     type: 'list',
     name: 'qname',
     message: MSG,
-    choices: [
-      'Overwrite existing file',
-      'Rename output file appending the current timestamp',
-      'Rename output file with another name',
-      'Exit'
-    ],
+    choices,
   }]);
 
   switch (ANS.qname) {
