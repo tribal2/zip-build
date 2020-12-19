@@ -8,9 +8,9 @@ async function setBackupName(dstdir, filename, format) {
   if (! fs.existsSync(URI)) return filename;
 
   const choices = [
-    'Overwrite existing file',
     'Rename output file appending the current timestamp',
     'Rename output file with another name',
+    'Overwrite existing file',
     'Exit'
   ];
 
@@ -25,19 +25,19 @@ async function setBackupName(dstdir, filename, format) {
 
   switch (ANS.qname) {
     case choices[0]:
-      return filename;
-
-    case choices[1]:
       filename = filename.replace(/(\.[\w\d_-]+)$/i, `_${Date.now()}$1`);
       return await setBackupName(dstdir, filename, format);
 
-    case choices[2]:
+    case choices[1]:
       const ANS_REN = await inquirer.prompt([{
         type: 'input',
         name: 'filename',
         message: 'New name for your file:',
       }]);
       return await setBackupName(dstdir, `${ANS_REN.filename}.${format}`, format);
+
+    case choices[2]:
+      return filename;
 
     default:
       console.log('Bye!');
