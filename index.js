@@ -3,6 +3,7 @@ const fs = require('fs');
 const zipFolderPromise = require('zip-folder-promise');
 const inquirer = require('inquirer');
 const yargs = require('yargs/yargs');
+const { generateFilename } = require('./generateFilename.js');
 
 const CWD = process.cwd();
 const PACKAGE = require(`${CWD}/package.json`);
@@ -10,6 +11,7 @@ const PACKAGE = require(`${CWD}/package.json`);
 const { hideBin } = require('yargs/helpers')
 
 let _format;
+let _template;
 let _askFilename;
 
 yargs(hideBin(process.argv))
@@ -43,12 +45,19 @@ yargs(hideBin(process.argv))
           description: 'Ask for output archive filename',
           default: false,
         })
+        .option('t', {
+          alias: 'template',
+          type: 'string',
+          description: 'Template for output archive filename',
+          default: '%NAME%_%VERSION%.%EXT%',
+        })
         .example('$0', "Zip 'build' directory and put archive under dist directory.")
         .example('$0 out backup', "Zip 'out' directory and put archive under backup directory.")
     },
     (argv) => {
-      const { buildDir, zipDir, format, name } = argv;
+      const { buildDir, zipDir, format, name, template } = argv;
       _format = format;
+      _template = template;
       _askFilename = name;
 
       init(buildDir, zipDir)
@@ -98,10 +107,8 @@ async function setBackupName(dstdir, filename) {
       return filename;
 
     case choices[1]:
-      return await setBackupName(
-        dstdir,
-        `${PACKAGE.name}_${PACKAGE.version}_${Date.now()}.${_format}`
-      );
+      filename = filename.replace(/(\.[\w\d_-]+)$/i, `_${Date.now()}$1`);
+      return await setBackupName(dstdir, filename);
 
     case choices[2]:
       const ANS_REN = await inquirer.prompt([{
@@ -143,7 +150,7 @@ async function init(srcdir = 'build', dstdir = 'dist') {
     }
   }
 
-  let outfileName = `${PACKAGE.name}_${PACKAGE.version}.${_format}`;
+  let outfileName = generateFilename(_template, _format);
   if (_askFilename) {
     const ANS_NAME = await inquirer.prompt([{
       type: 'input',
