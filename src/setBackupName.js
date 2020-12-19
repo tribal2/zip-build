@@ -41,7 +41,7 @@ async function setBackupName(dstdir, filename, format) {
 
     default:
       console.log('Bye!');
-      process.exit(1);
+      process.exit(0);
   }
 }
 

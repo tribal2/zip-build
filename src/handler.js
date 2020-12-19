@@ -32,7 +32,7 @@ async function handler({ buildDir, zipDir, format, name, template }) {
         }
       } else {
         console.log('Bye!');
-        process.exit(1);
+        process.exit(0);
       }
     }
 
