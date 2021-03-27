@@ -1,6 +1,6 @@
 {
   "name": "zip-build",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Node package to zip your build directory and name it according to your package.json name and version.",
   "homepage": "https://github.com/swordf1zh/zip-build#readme",
   "author": "Ricardo Tribaldos (https://barustudio.com)",
