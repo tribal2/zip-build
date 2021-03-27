@@ -15,6 +15,12 @@ exports.generateFilename = function(template, extension) {
       filename = filename.replace(keyPlaceholder, parsedVal);
     }
   }
+  
+  if (filename.includes('%TIMESTAMP%')) {
+    const now = new Date();
+    const timestamp = now.toISOString().slice(0, -5); // eg: 2021-03-27T04:17:04
+    filename = filename.replace('%TIMESTAMP%', timestamp);
+  }
 
   filename = filename.replace('%EXT%', extension);
 

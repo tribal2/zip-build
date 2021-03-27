@@ -25,7 +25,9 @@ async function setBackupName(dstdir, filename, format) {
 
   switch (ANS.qname) {
     case choices[0]:
-      filename = filename.replace(/(\.[\w\d_-]+)$/i, `_${Date.now()}$1`);
+      const now = new Date();
+      const timestamp = now.toISOString().slice(0, -5); // eg: 2021-03-27T04:17:04
+      filename = filename.replace(/(\.[\w\d_-]+)$/i, `_${timestamp}$1`);
       return await setBackupName(dstdir, filename, format);
 
     case choices[1]:

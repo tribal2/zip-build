@@ -34,7 +34,7 @@ function builder(yargs) {
       alias: 'template',
       type: 'string',
       description: 'Template for output archive filename',
-      default: '%NAME%_%VERSION%.%EXT%',
+      default: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
     })
     .example('$0', "Zip 'build' directory and put archive under dist directory.")
     .example('$0 out backup', "Zip 'out' directory and put archive under backup directory.")

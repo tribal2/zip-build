@@ -12,7 +12,7 @@
   <a href="https://github.com/swordf1zh/zip-build/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/swordf1zh/zip-build" />
   </a>
-  <a href="https://twitter.com/r\_tribaldos" target="_blank">
+  <a href="https://twitter.com/r_tribaldos" target="_blank">
     <img alt="Twitter: r\_tribaldos" src="https://img.shields.io/twitter/follow/r_tribaldos.svg?style=social" />
   </a>
 </p>
@@ -46,7 +46,7 @@ $ zip-build --help
   #    -t, --template Template for output archive filename using variables
   #                   from your package.json file (eg: name, version,
   #                   license, description, author, etc.)
-  #                              [string] [default: %NAME%_%VERSION%.%EXT%]
+  #                  [string] [default: %NAME%_%VERSION%_%TIMESTAMP%.%EXT%]
   #
   #  Examples:
   #  (1) Using defaults:
