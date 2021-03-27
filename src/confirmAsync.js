@@ -1,3 +1,5 @@
+const inquirer = require('inquirer');
+
 async function confirmAsync(message, _default = true) {
   const questions = [{
     type: 'confirm',
