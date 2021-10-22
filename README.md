@@ -3,14 +3,14 @@
   <a href="https://www.npmjs.com/package/zip-build" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/zip-build.svg">
   </a>
-  <a href="https://github.com/swordf1zh/zip-build#readme" target="_blank">
+  <a href="https://github.com/tribal2/zip-build#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/swordf1zh/zip-build/graphs/commit-activity" target="_blank">
+  <a href="https://github.com/tribal2/zip-build/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/swordf1zh/zip-build/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/swordf1zh/zip-build" />
+  <a href="https://github.com/tribal2/zip-build/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/tribal2/zip-build" />
   </a>
   <a href="https://twitter.com/r_tribaldos" target="_blank">
     <img alt="Twitter: r\_tribaldos" src="https://img.shields.io/twitter/follow/r_tribaldos.svg?style=social" />
@@ -46,7 +46,7 @@ $ zip-build --help
   #    -t, --template Template for output archive filename using variables
   #                   from your package.json file (eg: name, version,
   #                   license, description, author, etc.)
-  #                  [string] [default: %NAME%_%VERSION%_%TIMESTAMP%.%EXT%]
+  #                   [string] [default: %NAME%_%VERSION%_%TIMESTAMP%.%EXT%]
   #
   #  Examples:
   #  (1) Using defaults:
@@ -82,7 +82,7 @@ Include it as part of your npm build workflow:
 
 👤 **Ricardo Tribaldos (https://barustudio.com)**
 
-* Github: [@swordf1zh](https://github.com/swordf1zh)
+* Github: [@tribal2](https://github.com/tribal2)
 * Twitter: [@r_tribaldos](https://twitter.com/r_tribaldos)
 * LinkedIn: [@rtribaldos](https://linkedin.com/in/rtribaldos)
 
@@ -92,8 +92,8 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2020 [Ricardo Tribaldos (https://barustudio.com)](https://github.com/swordf1zh).<br />
-This project is [MIT](https://github.com/swordf1zh/zip-build/blob/master/LICENSE) licensed.
+Copyright © 2020 [Ricardo Tribaldos (https://barustudio.com)](https://github.com/tribal2).<br />
+This project is [MIT](https://github.com/tribal2/zip-build/blob/master/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

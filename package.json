@@ -2,12 +2,12 @@
   "name": "zip-build",
   "version": "1.4.0",
   "description": "Node package to zip your build directory and name it according to your package.json name and version.",
-  "homepage": "https://github.com/swordf1zh/zip-build#readme",
+  "homepage": "https://github.com/tribal2/zip-build#readme",
   "author": "Ricardo Tribaldos (https://barustudio.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swordf1zh/zip-build"
+    "url": "https://github.com/tribal2/zip-build"
   },
   "keywords": [
     "zip",
@@ -18,7 +18,7 @@
     "zip-folder"
   ],
   "bugs": {
-    "url": "https://github.com/swordf1zh/zip-build/issues"
+    "url": "https://github.com/tribal2/zip-build/issues"
   },
   "main": "src/index.js",
   "bin": "./src/index.js",
