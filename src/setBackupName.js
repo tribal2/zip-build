@@ -1,9 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 const inquirer = require('inquirer');
 
 async function setBackupName(dstdir, filename, format) {
-  const OUTPATH = `${process.cwd()}/${dstdir}`;
-  const URI = `${OUTPATH}/${filename}`;
+  const OUTPATH = path.join(process.cwd(), dstdir);
+  const URI = path.join(OUTPATH, filename);
 
   if (! fs.existsSync(URI)) return filename;
 

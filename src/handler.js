@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const zipFolderPromise = require('zip-folder-promise');
 const inquirer = require('inquirer');
 const { confirmAsync } = require('./confirmAsync.js');
@@ -11,8 +12,8 @@ async function handler({ buildDir, zipDir, format, name, template }) {
   try {
     const _askFilename = name;
 
-    const BUILDPATH = `${CWD}/${buildDir}`;
-    const OUTPATH = `${CWD}/${zipDir}`;
+    const BUILDPATH = path.join(CWD, buildDir);
+    const OUTPATH = path.join(CWD, zipDir);
 
     if (!fs.existsSync(BUILDPATH)) {
       console.log(`There is no directory with the name '${buildDir}' in your project.`);
@@ -28,7 +29,8 @@ async function handler({ buildDir, zipDir, format, name, template }) {
         const gitIgMsg = `Do you want to include '${zipDir}' in your .gitignore?`;
         if (await confirmAsync(gitIgMsg)) {
           console.log(`Done!`);
-          fs.appendFileSync(`${CWD}/.gitignore`, `\n${zipDir}`);
+          const GITIGNOREPATH = path.join(CWD, '.gitignore');
+          fs.appendFileSync(GITIGNOREPATH, `\n${zipDir}`);
         }
       } else {
         console.log('Bye!');
@@ -48,11 +50,12 @@ async function handler({ buildDir, zipDir, format, name, template }) {
     }
 
     const OUTFILE = await setBackupName(zipDir, outfileName, format);
-    const OUTURI = `${OUTPATH}/${OUTFILE}`;
+    const OUTURI = path.join(OUTPATH, OUTFILE);
 
     const resMsg = await zipFolderPromise(BUILDPATH, OUTURI, format);
 
-    console.log(`${resMsg} to ${zipDir}/${OUTFILE}`);
+    const ZIPOUT = path.join(zipDir, OUTFILE);
+    console.log(`${resMsg} to ${ZIPOUT}`);
   } catch (error) {
     console.log(error)
   }
