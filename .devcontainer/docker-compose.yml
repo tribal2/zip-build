@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  nodejs:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - "..:/zip-build:rw"
+      - "/zip-build/node_modules"
+    command: sleep infinity
