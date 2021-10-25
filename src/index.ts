@@ -51,12 +51,12 @@ function builder(yargs: Argv) {
 }
 
 yargs(hideBin(process.argv))
-  .command(
-    '$0 [build-dir] [zip-dir] [options]',
-    'Zip your <build-dir> directory into <zip-dir>',
+  .command({
+    command: '$0 [buildDir] [zipDir] [options]',
+    describe: 'Zip your <build-dir> directory into <zip-dir>',
     builder,
     handler
-  )
+  })
   .help('h')
   .alias('h', 'help')
   .argv;
