@@ -31,11 +31,8 @@ function builder(yargs: Argv) {
       alias: 'format',
       type: 'string',
       description: 'Format of output file',
-      choices: [
-        'zip',
-        'tar',
-      ],
-      default: 'zip',
+      choices: formats,
+      default: formats[0],
     })
     .option('n', {
       alias: 'name',

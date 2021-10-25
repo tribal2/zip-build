@@ -5,10 +5,18 @@ import inquirer = require('inquirer');
 import confirmAsync from './confirmAsync';
 import generateFilename from './generateFilename';
 import setBackupName from './setBackupName';
+import { IArguments } from './index';
 
 const CWD = process.cwd();
 
-async function handler({ buildDir, zipDir, format, name, template }) {
+
+export default async function handler({ 
+  buildDir,
+  zipDir,
+  format,
+  name,
+  template,
+}: IArguments): Promise<void> {
   try {
     const _askFilename = name;
 

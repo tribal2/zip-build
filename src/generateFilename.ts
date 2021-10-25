@@ -1,9 +1,11 @@
+import { TFormat } from './index';
+
 const CWD = process.cwd();
 const PACKAGE = require(`${CWD}/package.json`);
 
 export default function generateFilename(
   template: string,
-  extension: string,
+  extension: TFormat,
 ): string {
   let filename = template;
 
