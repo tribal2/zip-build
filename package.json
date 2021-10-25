@@ -20,9 +20,12 @@
   "bugs": {
     "url": "https://github.com/tribal2/zip-build/issues"
   },
-  "main": "src/index.js",
-  "bin": "./src/index.js",
+  "main": "lib/index.js",
+  "bin": "./lib/index.js",
+  "files": ["lib/**/*"],
   "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
