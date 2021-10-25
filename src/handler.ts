@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const zipFolderPromise = require('zip-folder-promise');
-const inquirer = require('inquirer');
-const { confirmAsync } = require('./confirmAsync.js');
-const { generateFilename } = require('./generateFilename.js');
-const { setBackupName } = require('./setBackupName.js');
+import fs = require('fs');
+import path = require('path');
+import zipFolderPromise = require('zip-folder-promise');
+import inquirer = require('inquirer');
+import confirmAsync from './confirmAsync';
+import generateFilename from './generateFilename';
+import setBackupName from './setBackupName';
 
 const CWD = process.cwd();
 
@@ -60,5 +60,3 @@ async function handler({ buildDir, zipDir, format, name, template }) {
     console.log(error)
   }
 }
-
-module.exports = handler;

@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-const yargs = require('yargs/yargs');
-const { hideBin } = require('yargs/helpers');
-const handler = require('./handler');
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
+import { Argv } from 'yargs';
 
-function builder(yargs) {
-  yargs
+import handler from './handler';
+
+function builder(yargs: Argv) {
+  return yargs
     .usage('Usage: $0 <build-dir> <zip-dir> [options]')
     .positional('build-dir', {
       describe: 'Directory of your build output',

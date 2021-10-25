@@ -1,8 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const inquirer = require('inquirer');
+import fs = require('fs');
+import path = require('path');
+import inquirer = require('inquirer');
 
-async function setBackupName(dstdir, filename, format) {
+export default async function setBackupName(
+  dstdir: string,
+  filename: string,
+  format: string,
+): Promise<string> {
   const OUTPATH = path.join(process.cwd(), dstdir);
   const URI = path.join(OUTPATH, filename);
 
@@ -47,5 +51,3 @@ async function setBackupName(dstdir, filename, format) {
       process.exit(0);
   }
 }
-
-exports.setBackupName = setBackupName;
