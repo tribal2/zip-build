@@ -9,10 +9,17 @@ export default async function setBackupName(
   filename: string,
   format: TFormat,
 ): Promise<string> {
+  const FILEPARTS = path.parse(filename);
+  const FILEBASE = (FILEPARTS.ext === '')
+    ? `${FILEPARTS.name}.${format}`
+    : filename;
+  
   const OUTPATH = path.join(process.cwd(), dstdir);
-  const URI = path.join(OUTPATH, filename);
+  const URI = path.join(OUTPATH, FILEBASE);
 
-  if (! fs.existsSync(URI)) return filename;
+  if (! fs.existsSync(URI)) return FILEBASE;
+
+  const PARTS = path.parse(URI);
 
   const choices = [
     'Rename output file appending the current timestamp',
@@ -34,7 +41,7 @@ export default async function setBackupName(
     case choices[0]:
       const now = new Date();
       const timestamp = now.toISOString().slice(0, -5); // eg: 2021-03-27T04:17:04
-      filename = filename.replace(/(\.[\w\d_-]+)$/i, `_${timestamp}$1`);
+      filename = `${PARTS.name}_${timestamp}${PARTS.ext}`;
       return await setBackupName(dstdir, filename, format);
 
     case choices[1]:
@@ -43,7 +50,7 @@ export default async function setBackupName(
         name: 'filename',
         message: 'New name for your file:',
       }]);
-      return await setBackupName(dstdir, `${ANS_REN.filename}.${format}`, format);
+      return await setBackupName(dstdir, `${ANS_REN.filename}`, format);
 
     case choices[2]:
       return filename;

@@ -51,7 +51,7 @@ export default async function handler({
       const ANS_NAME = await inquirer.prompt([{
         type: 'input',
         name: 'filename',
-        message: 'Set output filename (including extension):',
+        message: 'Set output filename (extension is optional):',
       }]);
 
       if (ANS_NAME.filename) outfileName = ANS_NAME.filename;
