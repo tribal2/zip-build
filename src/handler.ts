@@ -10,7 +10,7 @@ import { IArguments } from './index';
 const CWD = process.cwd();
 
 
-export default async function handler({ 
+export default async function handler({
   buildDir,
   zipDir,
   format,
