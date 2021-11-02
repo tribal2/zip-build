@@ -1,14 +1,22 @@
-const fs = require('fs');
-const path = require('path');
-const zipFolderPromise = require('zip-folder-promise');
-const inquirer = require('inquirer');
-const { confirmAsync } = require('./confirmAsync.js');
-const { generateFilename } = require('./generateFilename.js');
-const { setBackupName } = require('./setBackupName.js');
+import fs = require('fs');
+import path = require('path');
+import zipFolderPromise = require('zip-folder-promise');
+import inquirer = require('inquirer');
+import confirmAsync from './confirmAsync';
+import generateFilename from './generateFilename';
+import setBackupName from './setBackupName';
+import { IArguments } from './index';
 
 const CWD = process.cwd();
 
-async function handler({ buildDir, zipDir, format, name, template }) {
+
+export default async function handler({
+  buildDir,
+  zipDir,
+  format,
+  name,
+  template,
+}: IArguments): Promise<void> {
   try {
     const _askFilename = name;
 
@@ -43,7 +51,7 @@ async function handler({ buildDir, zipDir, format, name, template }) {
       const ANS_NAME = await inquirer.prompt([{
         type: 'input',
         name: 'filename',
-        message: 'Set output filename (including extension):',
+        message: 'Set output filename (extension is optional):',
       }]);
 
       if (ANS_NAME.filename) outfileName = ANS_NAME.filename;
@@ -60,5 +68,3 @@ async function handler({ buildDir, zipDir, format, name, template }) {
     console.log(error)
   }
 }
-
-module.exports = handler;

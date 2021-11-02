@@ -1,6 +1,6 @@
-const inquirer = require('inquirer');
+import inquirer = require('inquirer');
 
-async function confirmAsync(message, _default = true) {
+export default async function confirmAsync(message: string, _default = true) {
   const questions = [{
     type: 'confirm',
     name: 'qname',
@@ -11,5 +11,3 @@ async function confirmAsync(message, _default = true) {
   const answerObj = await inquirer.prompt(questions);
   return answerObj.qname;
 }
-
-exports.confirmAsync = confirmAsync;
