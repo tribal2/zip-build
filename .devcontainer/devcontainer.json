@@ -20,7 +20,8 @@
 	"extensions": [
 		"github.copilot",
 		"dbaeumer.vscode-eslint",
-		"steoates.autoimport"
+		"steoates.autoimport",
+    "donjayamanne.githistory",
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
