@@ -39,8 +39,9 @@ export default function generateFilename(
           .split(':');                  // [ '15', '23', '47' ]
 
       timestamp = `${date}T${hour}h${min}m${sec}s`; //
-      filename = filename.replace('%TIMESTAMP%', timestamp);
     }
+
+    filename = filename.replace('%TIMESTAMP%', timestamp);
   }
 
   filename = filename.replace('%EXT%', extension);

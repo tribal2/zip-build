@@ -1,6 +1,6 @@
 {
   "name": "zip-build",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Node package to zip your build directory and name it according to your package.json name and version.",
   "homepage": "https://github.com/tribal2/zip-build#readme",
   "author": "Ricardo Tribaldos (https://barustudio.com)",
@@ -28,6 +28,7 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
+    "publish": "npm run prepare && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
