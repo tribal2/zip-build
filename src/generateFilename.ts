@@ -1,3 +1,4 @@
+import os from 'os';
 import { TFormat } from './index';
 
 const CWD = process.cwd();
@@ -20,11 +21,26 @@ export default function generateFilename(
       filename = filename.replace(keyPlaceholder, parsedVal);
     }
   }
-  
+
   if (filename.includes('%TIMESTAMP%')) {
     const now = new Date();
-    const timestamp = now.toISOString().slice(0, -5); // eg: 2021-03-27T04:17:04
-    filename = filename.replace('%TIMESTAMP%', timestamp);
+
+    let timestamp = now.toISOString()   // '2021-12-29T15:23:47.803Z'
+      .slice(0, -5);                    // '2021-12-29T15:23:47'
+
+    if (os.platform() === 'win32') {
+      const nowParts = timestamp
+        .split('T');                    // [ '2021-12-29', '15:23:47' ]
+
+      const date = nowParts[0];         // '2021-12-29'
+
+      const [ hour, min, sec ] =
+        nowParts[1]                     // '15:23:47'
+          .split(':');                  // [ '15', '23', '47' ]
+
+      timestamp = `${date}T${hour}h${min}m${sec}s`; //
+      filename = filename.replace('%TIMESTAMP%', timestamp);
+    }
   }
 
   filename = filename.replace('%EXT%', extension);
