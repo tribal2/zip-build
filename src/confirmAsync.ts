@@ -1,7 +1,10 @@
-import inquirer = require('inquirer');
+import inquirer, { Answers, QuestionCollection } from "inquirer";
 
-export default async function confirmAsync(message: string, _default = true) {
-  const questions = [{
+export default async function confirmAsync(
+  message: string,
+  _default = true
+): Promise<any> {
+  const questions: QuestionCollection<Answers> = [{
     type: 'confirm',
     name: 'qname',
     message,
