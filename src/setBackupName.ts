@@ -3,6 +3,7 @@ import path = require('path');
 import inquirer = require('inquirer');
 
 import { TFormat } from './index';
+import getTimestampString from './getTimestampString';
 
 export default async function setBackupName(
   dstdir: string,
@@ -13,7 +14,7 @@ export default async function setBackupName(
   const FILEBASE = (FILEPARTS.ext === '')
     ? `${FILEPARTS.name}.${format}`
     : filename;
-  
+
   const OUTPATH = path.join(process.cwd(), dstdir);
   const URI = path.join(OUTPATH, FILEBASE);
 
@@ -40,7 +41,7 @@ export default async function setBackupName(
   switch (ANS.qname) {
     case choices[0]:
       const now = new Date();
-      const timestamp = now.toISOString().slice(0, -5); // eg: 2021-03-27T04:17:04
+      const timestamp = getTimestampString();
       filename = `${PARTS.name}_${timestamp}${PARTS.ext}`;
       return await setBackupName(dstdir, filename, format);
 
