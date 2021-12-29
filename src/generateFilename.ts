@@ -10,7 +10,7 @@ export default function generateFilename(
   extension: TFormat,
   osPlatform: NodeJS.Platform = os.platform(),
 ): string {
-  let filename = template;
+  let filename = template || '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%';
 
   for (const key in PACKAGE) {
     if (PACKAGE.hasOwnProperty(key)) {
