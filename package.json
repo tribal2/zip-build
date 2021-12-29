@@ -28,8 +28,8 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "publish": "npm run prepare && npm publish",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "publish": "npm run prepare && npm run test && npm publish"
   },
   "dependencies": {
     "inquirer": "^8.2.0",
