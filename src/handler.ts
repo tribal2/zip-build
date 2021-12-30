@@ -1,14 +1,15 @@
-import fs = require('fs');
-import path = require('path');
-import zipFolderPromise = require('zip-folder-promise');
-import inquirer = require('inquirer');
+import fs from 'fs';
+import path from 'path';
+import inquirer from 'inquirer';
+import zipFolderPromise from 'zip-folder-promise';
+
 import userConfirmAsync from './userConfirmAsync';
 import generateFilename from './generateFilename';
 import userResolveConflictAsync from './userResolveConflictAsync';
+
 import { IArguments } from './index';
 
 const CWD = process.cwd();
-
 
 export default async function handler({
   buildDir,   // 'build'
