@@ -4,7 +4,7 @@ import zipFolderPromise = require('zip-folder-promise');
 import inquirer = require('inquirer');
 import confirmAsync from './confirmAsync';
 import generateFilename from './generateFilename';
-import setBackupName from './setBackupName';
+import userResolveConflictAsync from './userResolveConflictAsync';
 import { IArguments } from './index';
 
 const CWD = process.cwd();
@@ -62,7 +62,7 @@ export default async function handler({
     // Check if the file already exists, ask the user what to do
     let outUri = path.join(OUTPATH, outfileName);
     if (fs.existsSync(outUri)) {
-      const newOutfileName = await setBackupName(zipDir, outfileName);
+      const newOutfileName = await userResolveConflictAsync(zipDir, outfileName);
       outUri = path.join(OUTPATH, newOutfileName);
     }
 

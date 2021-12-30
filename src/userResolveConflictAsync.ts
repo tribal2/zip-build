@@ -4,7 +4,7 @@ import inquirer = require('inquirer');
 
 import getTimestampString from './getTimestampString';
 
-export default async function setBackupName(
+export default async function userResolveConflictAsync(
   dstdir: string,
   filename: string,
 ): Promise<string> {
@@ -55,7 +55,7 @@ export default async function setBackupName(
 
   // If the new filename already exists, ask the user what to do again
   if (fs.existsSync(URI)) {
-    return await setBackupName(dstdir, outfileName);
+    return await userResolveConflictAsync(dstdir, outfileName);
   }
 
   return outfileName;
