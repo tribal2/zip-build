@@ -26,10 +26,9 @@
     "lib/**/*"
   ],
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build",
     "test": "jest",
-    "publish": "npm run prepare && npm run test && npm publish"
+    "build": "npm test && tsc",
+    "publish": "npm run build && npm publish"
   },
   "dependencies": {
     "inquirer": "^8.2.0",
