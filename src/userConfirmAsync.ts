@@ -12,5 +12,6 @@ export default async function userConfirmAsync(
   }];
 
   const answerObj = await inquirer.prompt(questions);
+
   return answerObj.qname;
 }

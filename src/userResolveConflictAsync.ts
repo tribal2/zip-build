@@ -18,6 +18,7 @@ export default async function userResolveConflictAsync(
 
   const MSG = `The file '${filename}' already exists in directory `
     + `'${dstdir}'.. What do you want to do?`
+
   const ANS = await inquirer.prompt([{
     type: 'list',
     name: 'qname',
