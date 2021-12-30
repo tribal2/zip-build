@@ -11,11 +11,11 @@ const CWD = process.cwd();
 
 
 export default async function handler({
-  buildDir,
-  zipDir,
-  format,
-  name,
-  template,
+  buildDir,   // 'build'
+  zipDir,     // 'dist'
+  format,     // 'zip'
+  name,       // false
+  template,   // '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%'
 }: IArguments): Promise<void> {
   try {
     const _askFilename = name;
@@ -46,8 +46,10 @@ export default async function handler({
       }
     }
 
-    let outfileName = generateFilename(template, format);
-    if (_askFilename) {
+    let outfileName;
+    if (!_askFilename) {
+      outfileName = generateFilename(template, format);
+    } else {
       const ANS_NAME = await inquirer.prompt([{
         type: 'input',
         name: 'filename',
@@ -57,14 +59,18 @@ export default async function handler({
       if (ANS_NAME.filename) outfileName = ANS_NAME.filename;
     }
 
-    const OUTFILE = await setBackupName(zipDir, outfileName, format);
-    const OUTURI = path.join(OUTPATH, OUTFILE);
+    // Check if the file already exists, ask the user what to do
+    let outUri = path.join(OUTPATH, outfileName);
+    if (fs.existsSync(outUri)) {
+      const newOutfileName = await setBackupName(zipDir, outfileName);
+      outUri = path.join(OUTPATH, newOutfileName);
+    }
 
-    const resMsg = await zipFolderPromise(BUILDPATH, OUTURI, format);
+    const resMsg = await zipFolderPromise(BUILDPATH, outUri, format);
+    console.log(`${resMsg} to ${outUri}`);
+  }
 
-    const ZIPOUT = path.join(zipDir, OUTFILE);
-    console.log(`${resMsg} to ${ZIPOUT}`);
-  } catch (error) {
+  catch (error) {
     console.log(error)
   }
 }
