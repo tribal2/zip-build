@@ -1,6 +1,6 @@
 import inquirer, { Answers, QuestionCollection } from "inquirer";
 
-export default async function confirmAsync(
+export default async function userConfirmAsync(
   message: string,
   _default = true
 ): Promise<any> {

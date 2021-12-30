@@ -2,7 +2,7 @@ import fs = require('fs');
 import path = require('path');
 import zipFolderPromise = require('zip-folder-promise');
 import inquirer = require('inquirer');
-import confirmAsync from './confirmAsync';
+import userConfirmAsync from './userConfirmAsync';
 import generateFilename from './generateFilename';
 import userResolveConflictAsync from './userResolveConflictAsync';
 import { IArguments } from './index';
@@ -30,12 +30,12 @@ export default async function handler({
 
     if (!fs.existsSync(OUTPATH)) {
       const mkdirMsg = `There is no directory with the name '${zipDir}'. Do you want to create it?`;
-      if (await confirmAsync(mkdirMsg)) {
+      if (await userConfirmAsync(mkdirMsg)) {
         fs.mkdirSync(OUTPATH);
         console.log(`'${zipDir}' created!`);
 
         const gitIgMsg = `Do you want to include '${zipDir}' in your .gitignore?`;
-        if (await confirmAsync(gitIgMsg)) {
+        if (await userConfirmAsync(gitIgMsg)) {
           console.log(`Done!`);
           const GITIGNOREPATH = path.join(CWD, '.gitignore');
           fs.appendFileSync(GITIGNOREPATH, `\n${zipDir}`);
