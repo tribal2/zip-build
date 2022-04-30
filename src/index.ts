@@ -17,6 +17,12 @@ function builder(yargs: Argv) {
       describe: 'Directory for your zipped backup',
       default: 'dist'
     })
+    .option('interactive', {
+      alias: 'i',
+      type: 'boolean',
+      description: 'Enable interactive mode',
+      default: false,
+    })
     .option('format', {
       alias: 'f',
       type: 'string',
@@ -27,7 +33,7 @@ function builder(yargs: Argv) {
     .option('name', {
       alias: 'n',
       type: 'boolean',
-      description: 'Ask for output archive filename',
+      description: 'Ask for output archive filename (requires flag --interactive)',
       default: false,
     })
     .option('template', {
