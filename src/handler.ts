@@ -63,13 +63,12 @@ export default async function handler({
 
     // Check if the file already exists, ask the user what to do
     let outUri = path.join(OUTPATH, outfileName);
+
     if (fs.existsSync(outUri)) {
-      if (!interactive) {
-        outfileName = appendTimestampToFilename(outfileName);
-      } else {
-        const newOutfileName = await userResolveConflictAsync(zipDir, outfileName);
-        outUri = path.join(OUTPATH, newOutfileName);
-      }
+      const newOutfileName = interactive
+        ? await userResolveConflictAsync(zipDir, outfileName)
+        : appendTimestampToFilename(outfileName);
+      outUri = path.join(OUTPATH, newOutfileName);
     }
 
     const resMsg = await zipFolderPromise(BUILDPATH, outUri, format);
