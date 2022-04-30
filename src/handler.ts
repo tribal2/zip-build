@@ -7,7 +7,7 @@ import userConfirmAsync from './userConfirmAsync';
 import generateFilename from './generateFilename';
 import userResolveConflictAsync from './userResolveConflictAsync';
 
-import { IArguments } from './index';
+import { IZipBuildArguments } from "./@types/IZipBuildArguments";
 
 const CWD = process.cwd();
 
@@ -17,7 +17,7 @@ export default async function handler({
   format,     // 'zip'
   name,       // false
   template,   // '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%'
-}: IArguments): Promise<void> {
+}: IZipBuildArguments): Promise<void> {
   try {
     const _askFilename = name;
 

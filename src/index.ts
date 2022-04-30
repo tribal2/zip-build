@@ -1,20 +1,13 @@
 #!/usr/bin/env node
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-import { Arguments, Argv } from 'yargs';
+import { Argv } from 'yargs';
 
 import handler from './handler';
 
 const formats = ['zip', 'tar'] as const;
 export type TFormat = typeof formats[number];
 
-export interface IArguments extends Arguments {
-  buildDir: string;
-  zipDir: string;
-  format: TFormat;
-  name: boolean;
-  template: string;
-}
 
 function builder(yargs: Argv) {
   return yargs

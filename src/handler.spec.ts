@@ -7,7 +7,7 @@ import { mocked } from 'jest-mock';
 import handler from './handler';
 import generateFilename from './generateFilename';
 
-import { IArguments } from './index';
+import { IZipBuildArguments } from './@types/IZipBuildArguments';
 
 jest.mock('fs');
 const __fs = mocked(fs);
@@ -20,12 +20,12 @@ const __zipFolderPromise = mocked(zipFolderPromise);
 __zipFolderPromise.mockResolvedValueOnce('#### bytes written');
 
 const CWD = process.cwd();
-const ARGS: IArguments = {
+const ARGS: IZipBuildArguments = {
   _: [],
   $0: '',
   buildDir: 'dist',
   zipDir: 'build',
-  format: 'zip',
+  format: ZipBuildFormat.ZIP,
   name: false,
   template: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
 };
