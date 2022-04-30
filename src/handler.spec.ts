@@ -8,6 +8,7 @@ import handler from './handler';
 import generateFilename from './generateFilename';
 
 import { IZipBuildArguments } from './@types/IZipBuildArguments';
+import { ZipBuildFormat } from './@types/ZipBuildFormat';
 
 jest.mock('fs');
 const __fs = mocked(fs);

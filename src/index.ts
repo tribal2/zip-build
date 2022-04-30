@@ -2,12 +2,9 @@
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 import { Argv } from 'yargs';
+import { ZipBuildFormat } from './@types/ZipBuildFormat';
 
 import handler from './handler';
-
-const formats = ['zip', 'tar'] as const;
-export type TFormat = typeof formats[number];
-
 
 function builder(yargs: Argv) {
   return yargs
@@ -24,8 +21,8 @@ function builder(yargs: Argv) {
       alias: 'f',
       type: 'string',
       description: 'Format of output file',
-      choices: formats,
-      default: formats[0],
+      choices: Object.values(ZipBuildFormat),
+      default: ZipBuildFormat.ZIP,
     })
     .option('name', {
       alias: 'n',
