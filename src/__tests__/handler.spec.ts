@@ -4,11 +4,11 @@ import inquirer from 'inquirer';
 import zipFolderPromise from 'zip-folder-promise';
 import { mocked } from 'jest-mock';
 
-import handler from './handler';
-import generateFilename from './generateFilename';
+import handler from '../handler';
+import generateFilename from '../generateFilename';
 
-import { IZipBuildArguments } from './@types/IZipBuildArguments';
-import { ZipBuildFormat } from './@types/ZipBuildFormat';
+import { IZipBuildArguments } from '../@types/IZipBuildArguments';
+import { ZipBuildFormat } from '../@types/ZipBuildFormat';
 
 jest.mock('fs');
 const __fs = mocked(fs);

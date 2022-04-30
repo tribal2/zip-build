@@ -3,8 +3,8 @@ import fs from 'fs';
 import inquirer from 'inquirer';
 import { mocked } from 'jest-mock';
 
-import userResolveConflictAsync from './userResolveConflictAsync';
-import getTimestampString from './getTimestampString';
+import userResolveConflictAsync from '../userResolveConflictAsync';
+import getTimestampString from '../getTimestampString';
 
 jest.mock('fs');
 jest.mock('inquirer');

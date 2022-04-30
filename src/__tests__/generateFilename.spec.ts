@@ -1,7 +1,7 @@
 // This is my first test ever =)
 
-import generateFilename from './generateFilename';
-import { ZipBuildFormat } from './@types/ZipBuildFormat';
+import generateFilename from '../generateFilename';
+import { ZipBuildFormat } from '../@types/ZipBuildFormat';
 
 const CWD = process.cwd();
 const PACKAGE = require(`${CWD}/package.json`);
