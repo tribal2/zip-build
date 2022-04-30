@@ -11,6 +11,12 @@ enum Choices {
   EXIT = 'Exit'
 }
 
+export function appendTimestampToFilename(filename: string) {
+  const timestamp = getTimestampString();
+  const { name, ext } = path.parse(filename);
+  return `${name}_${timestamp}${ext}`;
+}
+
 export default async function userResolveConflictAsync(
   dstdir: string,
   filename: string,
@@ -31,9 +37,7 @@ export default async function userResolveConflictAsync(
   let outfileName: string;
   switch (QNAME) {
     case Choices.TIMESTAMP:
-      const timestamp = getTimestampString();
-      const PARTS = path.parse(filename);
-      outfileName = `${PARTS.name}_${timestamp}${PARTS.ext}`;
+      outfileName = appendTimestampToFilename(filename);
       break;
 
     case Choices.RENAME:
