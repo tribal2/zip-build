@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "start:dev": "npx ts-node -T lib/index.ts",
+    "start:dev": "npx ts-node -T src/index.ts",
     "build": "npm test && tsc",
     "publish": "npm run build && npm publish"
   },
