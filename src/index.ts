@@ -14,6 +14,7 @@ export interface IArguments extends Arguments {
   format: TFormat;
   name: boolean;
   template: string;
+  subDir: string;
 }
 
 function builder(yargs: Argv) {
@@ -45,6 +46,12 @@ function builder(yargs: Argv) {
       type: 'string',
       description: 'Template for output archive filename',
       default: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
+    })
+    .option('subDir', {
+      alias: 'sd',
+      type: 'string',
+      description: 'Set a subdirectory in the zip file',
+      default: '',
     })
     .example('$0', "Zip 'build' directory and put archive under dist directory.")
     .example('$0 out backup', "Zip 'out' directory and put archive under backup directory.");

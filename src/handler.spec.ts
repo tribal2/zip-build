@@ -27,6 +27,7 @@ const ARGS: IArguments = {
   zipDir: 'build',
   format: 'zip',
   name: false,
+  subDir: 'public',
   template: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
 };
 
@@ -47,7 +48,8 @@ test('Create backup archive with default values', async () => {
     .toHaveBeenCalledWith(
       BUILDPATH,
       OUTPATH,
-      ARGS.format
+      ARGS.format,
+      ARGS.subDir
     );
 });
 
@@ -99,6 +101,7 @@ test('Ask user for output file name', async () => {
     .toHaveBeenCalledWith(
       BUILDPATH,
       OUTPATH,
-      ARGS.format
+      ARGS.format,
+      ARGS.subDir
     );
 });

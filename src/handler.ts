@@ -15,6 +15,7 @@ export default async function handler({
   buildDir,   // 'build'
   zipDir,     // 'dist'
   format,     // 'zip'
+  subDir,     // 'subdirectory'
   name,       // false
   template,   // '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%'
 }: IArguments): Promise<void> {
@@ -67,7 +68,7 @@ export default async function handler({
       outUri = path.join(OUTPATH, newOutfileName);
     }
 
-    const resMsg = await zipFolderPromise(BUILDPATH, outUri, format);
+    const resMsg = await zipFolderPromise(BUILDPATH, outUri, format, subDir);
     console.log(`${resMsg} to ${outUri}`);
   }
 
