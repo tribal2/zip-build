@@ -45,7 +45,7 @@ function builder(yargs: Argv) {
     .option('subDir', {
       alias: 's',
       type: 'string',
-      description: 'Set a subdirectory in the zip file',
+      description: 'Creates a sub directory to put all files',
       default: '',
     })
     .example('$0', "Zip 'build' directory and put archive under dist directory.")
