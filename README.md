@@ -47,6 +47,9 @@ $ zip-build --help
   #                   from your package.json file (eg: name, version,
   #                   license, description, author, etc.)
   #                   [string] [default: %NAME%_%VERSION%_%TIMESTAMP%.%EXT%]
+  #    -s, --subDir   Creates a directory inside the zip file where all
+  #                   files gonna be
+  #                   [string] [default: '']
   #
   #  Examples:
   #  (1) Using defaults:
