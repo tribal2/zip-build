@@ -48,7 +48,7 @@ function builder(yargs: Argv) {
       default: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
     })
     .option('subDir', {
-      alias: 'sd',
+      alias: 's',
       type: 'string',
       description: 'Set a subdirectory in the zip file',
       default: '',
