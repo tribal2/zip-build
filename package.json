@@ -34,12 +34,12 @@
   "dependencies": {
     "inquirer": "^8.2.4",
     "yargs": "^16.2.0",
-    "zip-folder-promise": "^1.1.0"
+    "zip-folder-promise": "^1.2.0"
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.1",
-    "@types/jest": "^27.4.1",
-    "@types/node": "^16.11.32",
+    "@types/jest": "^27.5.0",
+    "@types/node": "^16.11.33",
     "@types/yargs": "^17.0.10",
     "jest": "^27.5.1",
     "jest-mock": "^27.5.1",
