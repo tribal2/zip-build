@@ -6,6 +6,7 @@ export interface IZipBuildArguments extends Arguments {
   zipDir: string;
   interactive: boolean;
   format: ZipBuildFormat;
+  subDir: string;
   name: boolean;
   template: string;
 }

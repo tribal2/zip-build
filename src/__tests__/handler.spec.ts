@@ -37,6 +37,7 @@ const ARGS: IZipBuildArguments = {
   zipDir: 'build',
   interactive: false,
   format: ZipBuildFormat.ZIP,
+  subDir: '',
   name: false,
   template: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
 };
@@ -76,7 +77,8 @@ describe('non-interactive mode', () => {
       .toHaveBeenCalledWith(
         BUILDPATH,
         OUTPATH,
-        ARGS.format
+        ARGS.format,
+        ARGS.subDir,
       );
   });
 
@@ -105,7 +107,8 @@ describe('non-interactive mode', () => {
         .toHaveBeenCalledWith(
           BUILDPATH,
           OUTPATH,
-          ARGS.format
+          ARGS.format,
+          ARGS.subDir,
         );
     }
   );
@@ -166,7 +169,8 @@ describe('interactive mode', () => {
       .toHaveBeenCalledWith(
         BUILDPATH,
         OUTPATH,
-        ARGS.format
+        ARGS.format,
+        ARGS.subDir,
       );
   });
 
