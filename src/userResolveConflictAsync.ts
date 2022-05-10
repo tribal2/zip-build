@@ -17,7 +17,7 @@ export function appendTimestampToFilename(filename: string) {
   return `${name}_${timestamp}${ext}`;
 }
 
-export default async function userResolveConflictAsync(
+export async function userResolveConflictAsync(
   dstdir: string,
   filename: string,
 ): Promise<string> {

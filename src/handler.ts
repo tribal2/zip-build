@@ -3,9 +3,9 @@ import path from 'path';
 import inquirer from 'inquirer';
 import zipFolderPromise from 'zip-folder-promise';
 
-import userConfirmAsync from './userConfirmAsync';
+import { userConfirmAsync } from './userConfirmAsync';
 import generateFilename from './generateFilename';
-import userResolveConflictAsync, { appendTimestampToFilename } from './userResolveConflictAsync';
+import { userResolveConflictAsync, appendTimestampToFilename } from './userResolveConflictAsync';
 
 import { IZipBuildArguments } from "./@types/IZipBuildArguments";
 

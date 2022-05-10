@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import { mocked } from "ts-jest/dist/utils/testing";
 
-import userConfirmAsync from "../userConfirmAsync";
+import { userConfirmAsync } from "../userConfirmAsync";
 
 jest.mock("inquirer");
 
