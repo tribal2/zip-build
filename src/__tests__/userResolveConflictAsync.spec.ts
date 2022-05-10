@@ -13,7 +13,7 @@ const INPUT_FILENAME = 'file.zip';
 
 test('Rename output file appending the current timestamp', async () => {
   mocked(inquirer).prompt.mockResolvedValueOnce({
-    qname: 'Rename output file appending the current timestamp',
+    QNAME: 'Rename output file appending the current timestamp',
   });
 
   const TS = getTimestampString();
@@ -27,7 +27,7 @@ test('Rename output file with another name', async () => {
   // mocked(fs).existsSync.mockReturnValueOnce(true);
   mocked(inquirer).prompt
     .mockResolvedValueOnce({
-      qname: 'Rename output file with another name',
+      QNAME: 'Rename output file with another name',
     })
     .mockResolvedValueOnce({
       filename: 'file2.zip',
@@ -41,13 +41,13 @@ test('Rename output file with another name twice', async () => {
   mocked(fs).existsSync.mockReturnValueOnce(true);
   mocked(inquirer).prompt
     .mockResolvedValueOnce({
-      qname: 'Rename output file with another name',
+      QNAME: 'Rename output file with another name',
     })
     .mockResolvedValueOnce({
       filename: 'file2.zip',
     })
     .mockResolvedValueOnce({
-      qname: 'Rename output file with another name',
+      QNAME: 'Rename output file with another name',
     })
     .mockResolvedValueOnce({
       filename: 'file3.zip',
@@ -60,7 +60,7 @@ test('Rename output file with another name twice', async () => {
 test('Overwrite existing file', async () => {
   // mocked(fs).existsSync.mockReturnValueOnce(true);
   mocked(inquirer).prompt.mockResolvedValueOnce({
-    qname: 'Overwrite existing file',
+    QNAME: 'Overwrite existing file',
   });
 
   const RES = await userResolveConflictAsync('dist', INPUT_FILENAME);

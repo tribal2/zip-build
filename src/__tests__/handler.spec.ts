@@ -88,7 +88,7 @@ test('Ask user for output file name', async () => {
 
   // Ask user for output file name
   __inquirer.prompt
-    .mockResolvedValueOnce({ filename: 'test.zip' });
+    .mockResolvedValueOnce({ RESP_FILENAME: 'test.zip' });
 
   const BUILDPATH = path.join(CWD, ARGS.buildDir);
   const OUTPATH = path.join(CWD, ARGS.zipDir, 'test.zip');
