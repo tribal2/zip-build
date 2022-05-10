@@ -3,24 +3,24 @@ import path from 'path';
 import inquirer from 'inquirer';
 import zipFolderPromise from 'zip-folder-promise';
 
-import userConfirmAsync from './userConfirmAsync';
+import { userConfirmAsync } from './userConfirmAsync';
 import generateFilename from './generateFilename';
-import userResolveConflictAsync from './userResolveConflictAsync';
+import { userResolveConflictAsync, appendTimestampToFilename } from './userResolveConflictAsync';
 
-import { IArguments } from './index';
+import { IZipBuildArguments } from "./@types/IZipBuildArguments";
 
 const CWD = process.cwd();
 
 export default async function handler({
   buildDir,   // 'build'
   zipDir,     // 'dist'
+  interactive,// false
   format,     // 'zip'
+  subDir,     // 'subdirectory'
   name,       // false
   template,   // '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%'
-}: IArguments): Promise<void> {
+}: IZipBuildArguments): Promise<void> {
   try {
-    const _askFilename = name;
-
     const BUILDPATH = path.join(CWD, buildDir);
     const OUTPATH = path.join(CWD, zipDir);
 
@@ -30,44 +30,51 @@ export default async function handler({
     }
 
     if (!fs.existsSync(OUTPATH)) {
-      const mkdirMsg = `There is no directory with the name '${zipDir}'. Do you want to create it?`;
-      if (await userConfirmAsync(mkdirMsg)) {
+      if (!interactive) {
         fs.mkdirSync(OUTPATH);
-        console.log(`'${zipDir}' created!`);
-
-        const gitIgMsg = `Do you want to include '${zipDir}' in your .gitignore?`;
-        if (await userConfirmAsync(gitIgMsg)) {
-          console.log(`Done!`);
-          const GITIGNOREPATH = path.join(CWD, '.gitignore');
-          fs.appendFileSync(GITIGNOREPATH, `\n${zipDir}`);
-        }
       } else {
-        console.log('Bye!');
-        process.exit(0);
+        const mkdirMsg = `There is no directory with the name '${zipDir}'. Do you want to create it?`;
+        const mkdirAnswer = await userConfirmAsync(mkdirMsg);
+        if (mkdirAnswer) {
+          fs.mkdirSync(OUTPATH);
+          console.log(`'${zipDir}' created!`);
+
+          const gitIgMsg = `Do you want to include '${zipDir}' in your .gitignore?`;
+          const gitIgnoreAnswer = await userConfirmAsync(gitIgMsg);
+          if (gitIgnoreAnswer) {
+            console.log(`Done!`);
+            const GITIGNOREPATH = path.join(CWD, '.gitignore');
+            fs.appendFileSync(GITIGNOREPATH, `\n${zipDir}`);
+          }
+        } else {
+          console.log('Bye!');
+          process.exit(0);
+        }
       }
     }
 
-    let outfileName;
-    if (!_askFilename) {
-      outfileName = generateFilename(template, format);
-    } else {
-      const ANS_NAME = await inquirer.prompt([{
+    let outfileName = generateFilename(template, format);
+    if (interactive && name) {
+      const { RESP_FILENAME } = await inquirer.prompt([{
         type: 'input',
-        name: 'filename',
+        name: 'RESP_FILENAME',
         message: 'Set output filename (extension is optional):',
       }]);
 
-      if (ANS_NAME.filename) outfileName = ANS_NAME.filename;
+      if (RESP_FILENAME) outfileName = RESP_FILENAME;
     }
 
     // Check if the file already exists, ask the user what to do
     let outUri = path.join(OUTPATH, outfileName);
+
     if (fs.existsSync(outUri)) {
-      const newOutfileName = await userResolveConflictAsync(zipDir, outfileName);
+      const newOutfileName = interactive
+        ? await userResolveConflictAsync(zipDir, outfileName)
+        : appendTimestampToFilename(outfileName);
       outUri = path.join(OUTPATH, newOutfileName);
     }
 
-    const resMsg = await zipFolderPromise(BUILDPATH, outUri, format);
+    const resMsg = await zipFolderPromise(BUILDPATH, outUri, format, subDir);
     console.log(`${resMsg} to ${outUri}`);
   }
 

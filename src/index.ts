@@ -1,20 +1,10 @@
 #!/usr/bin/env node
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-import { Arguments, Argv } from 'yargs';
+import { Argv } from 'yargs';
+import { ZipBuildFormat } from './@types/ZipBuildFormat';
 
 import handler from './handler';
-
-const formats = ['zip', 'tar'] as const;
-export type TFormat = typeof formats[number];
-
-export interface IArguments extends Arguments {
-  buildDir: string;
-  zipDir: string;
-  format: TFormat;
-  name: boolean;
-  template: string;
-}
 
 function builder(yargs: Argv) {
   return yargs
@@ -27,17 +17,23 @@ function builder(yargs: Argv) {
       describe: 'Directory for your zipped backup',
       default: 'dist'
     })
+    .option('interactive', {
+      alias: 'i',
+      type: 'boolean',
+      description: 'Enable interactive mode',
+      default: false,
+    })
     .option('format', {
       alias: 'f',
       type: 'string',
       description: 'Format of output file',
-      choices: formats,
-      default: formats[0],
+      choices: Object.values(ZipBuildFormat),
+      default: ZipBuildFormat.ZIP,
     })
     .option('name', {
       alias: 'n',
       type: 'boolean',
-      description: 'Ask for output archive filename',
+      description: 'Ask for output archive filename (requires flag --interactive)',
       default: false,
     })
     .option('template', {
@@ -45,6 +41,12 @@ function builder(yargs: Argv) {
       type: 'string',
       description: 'Template for output archive filename',
       default: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
+    })
+    .option('subDir', {
+      alias: 's',
+      type: 'string',
+      description: 'Creates a sub directory to put all files',
+      default: '',
     })
     .example('$0', "Zip 'build' directory and put archive under dist directory.")
     .example('$0 out backup', "Zip 'out' directory and put archive under backup directory.");

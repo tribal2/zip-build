@@ -4,37 +4,43 @@ import inquirer = require('inquirer');
 
 import getTimestampString from './getTimestampString';
 
-export default async function userResolveConflictAsync(
+enum Choices {
+  TIMESTAMP = 'Rename output file appending the current timestamp',
+  RENAME = 'Rename output file with another name',
+  OVERWRITE = 'Overwrite existing file',
+  EXIT = 'Exit'
+}
+
+export function appendTimestampToFilename(filename: string) {
+  const timestamp = getTimestampString();
+  const { name, ext } = path.parse(filename);
+  return `${name}_${timestamp}${ext}`;
+}
+
+export async function userResolveConflictAsync(
   dstdir: string,
   filename: string,
 ): Promise<string> {
 
-  const choices = [
-    'Rename output file appending the current timestamp',
-    'Rename output file with another name',
-    'Overwrite existing file',
-    'Exit'
-  ];
+  const choices = Object.values(Choices);
 
   const MSG = `The file '${filename}' already exists in directory `
     + `'${dstdir}'.. What do you want to do?`
 
-  const ANS = await inquirer.prompt([{
+  const { QNAME }: { QNAME: Choices; } = await inquirer.prompt([{
     type: 'list',
-    name: 'qname',
+    name: 'QNAME',
     message: MSG,
     choices,
   }]);
 
   let outfileName: string;
-  switch (ANS.qname) {
-    case choices[0]:
-      const timestamp = getTimestampString();
-      const PARTS = path.parse(filename);
-      outfileName = `${PARTS.name}_${timestamp}${PARTS.ext}`;
+  switch (QNAME) {
+    case Choices.TIMESTAMP:
+      outfileName = appendTimestampToFilename(filename);
       break;
 
-    case choices[1]:
+    case Choices.RENAME:
       const ANS_REN = await inquirer.prompt([{
         type: 'input',
         name: 'filename',
@@ -43,9 +49,10 @@ export default async function userResolveConflictAsync(
       outfileName = ANS_REN.filename;
       break;
 
-    case choices[2]:
+    case Choices.OVERWRITE:
       return filename;
 
+    case Choices.EXIT:
     default:
       console.log('Bye!');
       process.exit(0);

@@ -1,4 +1,4 @@
-import getTimestampString from "./getTimestampString";
+import getTimestampString from "../getTimestampString";
 
 const NIX_REGEX = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$/;
 const WIN_REGEX = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}h[0-9]{2}m[0-9]{2}s$/;

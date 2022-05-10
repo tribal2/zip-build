@@ -1,13 +1,13 @@
 import os from 'os';
-import { TFormat } from './index';
 import getTimestampString from './getTimestampString';
+import { ZipBuildFormat } from './@types/ZipBuildFormat';
 
 const CWD = process.cwd();
 const PACKAGE = require(`${CWD}/package.json`);
 
 export default function generateFilename(
   template: string,
-  extension: TFormat,
+  extension: ZipBuildFormat,
   osPlatform: NodeJS.Platform = os.platform(),
 ): string {
   let filename = template || '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%';
