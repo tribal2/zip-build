@@ -33,12 +33,14 @@ export default async function handler({
         fs.mkdirSync(OUTPATH);
       } else {
         const mkdirMsg = `There is no directory with the name '${zipDir}'. Do you want to create it?`;
-        if (await userConfirmAsync(mkdirMsg)) {
+        const mkdirAnswer = await userConfirmAsync(mkdirMsg);
+        if (mkdirAnswer) {
           fs.mkdirSync(OUTPATH);
           console.log(`'${zipDir}' created!`);
 
           const gitIgMsg = `Do you want to include '${zipDir}' in your .gitignore?`;
-          if (await userConfirmAsync(gitIgMsg)) {
+          const gitIgnoreAnswer = await userConfirmAsync(gitIgMsg);
+          if (gitIgnoreAnswer) {
             console.log(`Done!`);
             const GITIGNOREPATH = path.join(CWD, '.gitignore');
             fs.appendFileSync(GITIGNOREPATH, `\n${zipDir}`);
