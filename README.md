@@ -1,19 +1,19 @@
 <h1 align="center">Welcome to zip-build 👋</h1>
-<p>
+<p align="center">
   <a href="https://www.npmjs.com/package/zip-build" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/zip-build.svg">
+    <img alt="Version" src="https://img.shields.io/npm/v/zip-build.svg?logo=npm&style=flat-square">
+    <img alt="Downloads" src="https://img.shields.io/npm/dt/zip-build?style=flat-square">
   </a>
+</p>
+<p align="center">
   <a href="https://github.com/tribal2/zip-build#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg?logo=github&style=flat-square" />
   </a>
   <a href="https://github.com/tribal2/zip-build/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square" />
   </a>
   <a href="https://github.com/tribal2/zip-build/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/tribal2/zip-build" />
-  </a>
-  <a href="https://twitter.com/r_tribaldos" target="_blank">
-    <img alt="Twitter: r\_tribaldos" src="https://img.shields.io/twitter/follow/r_tribaldos.svg?style=social" />
+    <img alt="License: MIT" src="https://img.shields.io/github/license/tribal2/zip-build?style=flat-square" />
   </a>
 </p>
 
@@ -85,9 +85,17 @@ Include it as part of your npm build workflow:
 
 👤 **Ricardo Tribaldos (https://barustudio.com)**
 
-* Github: [@tribal2](https://github.com/tribal2)
-* Twitter: [@r_tribaldos](https://twitter.com/r_tribaldos)
-* LinkedIn: [@rtribaldos](https://linkedin.com/in/rtribaldos)
+<a href="https://github.com/tribal2" target="_blank">
+  <img alt="Github: tribal2" src="https://img.shields.io/github/followers/tribal2?label=%20%40tribal2&style=social" />
+</a>
+
+<a href="https://twitter.com/r_tribaldos" target="_blank">
+  <img alt="Twitter: r\_tribaldos" src="https://img.shields.io/twitter/follow/r_tribaldos?label=%40r_tribaldos&style=social" />
+</a>
+
+<a href="https://linkedin.com/in/rtribaldos" target="_blank">
+  <img alt="Linkedin: rtribaldos" src="https://img.shields.io/badge/%40rtribaldos-500+-blue?style=social&logo=linkedin" />
+</a>
 
 ## Show your support
 
