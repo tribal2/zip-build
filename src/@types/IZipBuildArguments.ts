@@ -8,5 +8,6 @@ export interface IZipBuildArguments extends Arguments {
   format: ZipBuildFormat;
   subDir: string;
   name: boolean;
+  override: boolean;
   template: string;
 }

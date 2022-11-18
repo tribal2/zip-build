@@ -39,6 +39,7 @@ const ARGS: IZipBuildArguments = {
   format: ZipBuildFormat.ZIP,
   subDir: '',
   name: false,
+  override: false,
   template: '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%',
 };
 
@@ -47,7 +48,9 @@ const FILENAME = generateFilename(ARGS.template, ARGS.format);
 const OUTPATH = path.join(CWD, ARGS.zipDir, FILENAME);
 
 afterEach(() => {
+  jest.clearAllMocks()
   __userConfirmAsync.mockReset();
+  __fs.existsSync.mockRestore();
 });
 
 describe('non-interactive mode', () => {
@@ -96,11 +99,40 @@ describe('non-interactive mode', () => {
       __userConfirmAsync.mockResolvedValue(true);
 
       // Output filename conflict resolution
-      __appendTimestampToFilename.mockReturnValue(FILENAME);
+      __appendTimestampToFilename.mockReturnValue(FILENAME + "someConflictResolutionFileName.zip");
 
       await handler(ARGS);
 
       expect(__appendTimestampToFilename).toHaveBeenCalledTimes(1); // **
+
+      expect(__zipFolderPromise).toHaveBeenCalled();
+      expect(__zipFolderPromise)
+        .toHaveBeenCalledWith(
+          BUILDPATH,
+          OUTPATH + "someConflictResolutionFileName.zip",
+          ARGS.format,
+          ARGS.subDir,
+        );
+    }
+  );
+
+  test(
+    'Override existing file if override flag is set',
+    async () => {
+      __fs.existsSync
+        .mockReturnValueOnce(true)   // BUILDPATH
+        .mockReturnValueOnce(true)   // OUTPATH
+        .mockReturnValueOnce(true);  // outUri
+
+      // Output filename conflict resolution
+      __appendTimestampToFilename.mockReturnValue('someFileNameWithConflictResolution.zip');
+
+      await handler({
+        ...ARGS,
+        override: true
+      });
+
+      expect(__appendTimestampToFilename).not.toHaveBeenCalled();
 
       expect(__zipFolderPromise).toHaveBeenCalled();
       expect(__zipFolderPromise)
@@ -112,7 +144,6 @@ describe('non-interactive mode', () => {
         );
     }
   );
-
 });
 
 describe('interactive mode', () => {
