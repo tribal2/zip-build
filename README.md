@@ -30,42 +30,34 @@ $ npm install --save-dev zip-build
 ```sh
 $ zip-build --help
 
-  #  zip-build <build-dir> <zip-dir> [options]
-  #
-  #  Positionals:
-  #    build-dir  Directory of your build output         [default: "build"]
-  #    zip-dir    Directory for your zipped backup        [default: "dist"]
-  #
-  #  Options:
-  #        --version  Show version number                         [boolean]
-  #    -h, --help     Show help                                   [boolean]
-  #    -f, --format   Format of output file
-  #                       [string] [choices: "zip", "tar"] [default: "zip"]
-  #    -n, --name     Ask for output archive filename
-  #                                              [boolean] [default: false]
-  #    -o, --override Whether to override the output file if it already exists
-  #                                              [boolean] [default: false]
-  #    -t, --template Template for output archive filename using variables
-  #                   from your package.json file (eg: name, version,
-  #                   license, description, author, etc.)
-  #                   [string] [default: %NAME%_%VERSION%_%TIMESTAMP%.%EXT%]
-  #    -s, --subDir   Creates a directory inside the zip file where all
-  #                   files gonna be
-  #                   [string] [default: '']
-  #
-  #  Examples:
-  #  (1) Using defaults:
-  #  $ index.js                      Zip 'build' directory and put archive
-  #                                  under 'dist' directory.
-  #
-  #  (2) Using your own directory names:
-  #  $ index.js out backup           Zip 'out' directory and put archive
-  #                                  under 'backup' directory.
-  #
-  #  (3) Using your own directory names and TAR format:
-  #  $ index.js out backup -f tar    Archive 'out' directory and put
-  #                                  archive under 'backup' directory
-  #                                  compressed with TAR.
+# Usage: zip-build <build-dir> <zip-dir> [options]
+#
+# Positionals:
+#   buildDir  Directory of your build output                    [default: "build"]
+#   zipDir    Directory for your zipped backup                   [default: "dist"]
+#
+# Options:
+#       --version      Show version number                               [boolean]
+#   -h, --help         Show help                                         [boolean]
+#   -i, --interactive  Enable interactive mode          [boolean] [default: false]
+#   -f, --format       Format of output file
+#                                [string] [choices: "zip", "tar"] [default: "zip"]
+#   -n, --name         Ask for output archive filename (requires flag
+#                      --interactive)                   [boolean] [default: false]
+#   -t, --template     Template for output archive filename
+#                         [string] [default: "%NAME%_%VERSION%_%TIMESTAMP%.%EXT%"]
+#   -s, --subDir       Creates a sub directory to put all files
+#                                                           [string] [default: ""]
+#   -o, --override     Override the output file if it already exists
+#                                                       [boolean] [default: false]
+#
+# Examples:
+#   zip-build                    Zip <build> directory and put archive under
+#                                <dist> directory.
+#   zip-build out backup         Zip <out> directory and put archive under
+#                                <backup> directory.
+#   zip-build out backup -f tar  Archive <out> directory and put archive under
+#                                <backup> directory compressed with Tar.
 ```
 
 Include it as part of your npm build workflow:
