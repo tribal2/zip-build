@@ -1,6 +1,6 @@
 {
   "name": "zip-build",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "Node package to zip your build directory and name it according to your package.json name and version.",
   "homepage": "https://github.com/tribal2/zip-build#readme",
   "author": "Ricardo Tribaldos (https://barustudio.com)",
@@ -32,22 +32,22 @@
     "publish": "npm run build && npm publish"
   },
   "dependencies": {
-    "inquirer": "^8.2.4",
+    "inquirer": "^8.2.5",
     "yargs": "^16.2.0",
     "zip-folder-promise": "^1.2.0"
   },
   "devDependencies": {
-    "@types/inquirer": "^8.2.1",
-    "@types/jest": "^27.5.0",
-    "@types/node": "^16.11.33",
-    "@types/yargs": "^17.0.10",
+    "@types/inquirer": "^8.2.5",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.3",
+    "@types/yargs": "^17.0.13",
     "jest": "^27.5.1",
     "jest-mock": "^27.5.1",
-    "prettier": "^2.6.2",
-    "ts-jest": "^27.1.4",
-    "ts-node": "^10.7.0",
+    "prettier": "^2.7.1",
+    "ts-jest": "^27.1.5",
+    "ts-node": "^10.9.1",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.9.3"
   }
 }

@@ -18,6 +18,7 @@ export default async function handler({
   format,     // 'zip'
   subDir,     // 'subdirectory'
   name,       // false
+  override,   // false
   template,   // '%NAME%_%VERSION%_%TIMESTAMP%.%EXT%'
 }: IZipBuildArguments): Promise<void> {
   try {
@@ -64,10 +65,11 @@ export default async function handler({
       if (RESP_FILENAME) outfileName = RESP_FILENAME;
     }
 
-    // Check if the file already exists, ask the user what to do
     let outUri = path.join(OUTPATH, outfileName);
 
-    if (fs.existsSync(outUri)) {
+    // If override flag is not set, check whether the file already exists
+    // If so append a timestamp for conflict resolution
+    if (!override && fs.existsSync(outUri)) {
       const newOutfileName = interactive
         ? await userResolveConflictAsync(zipDir, outfileName)
         : appendTimestampToFilename(outfileName);

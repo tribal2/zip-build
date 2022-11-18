@@ -48,8 +48,26 @@ function builder(yargs: Argv) {
       description: 'Creates a sub directory to put all files',
       default: '',
     })
-    .example('$0', "Zip 'build' directory and put archive under dist directory.")
-    .example('$0 out backup', "Zip 'out' directory and put archive under backup directory.");
+    .option('override', {
+      alias: 'o',
+      type: 'boolean',
+      description: 'Override the output file if it already exists',
+      default: false,
+    })
+    .example([
+      [
+        '$0',
+        'Zip <build> directory and put archive under <dist> directory.',
+      ],
+      [
+        '$0 out backup',
+        'Zip <out> directory and put archive under <backup> directory.',
+      ],
+      [
+        '$0 out backup -f tar',
+        'Archive <out> directory and put archive under <backup> directory compressed with Tar.',
+      ],
+    ]);
 }
 
 yargs(hideBin(process.argv))
